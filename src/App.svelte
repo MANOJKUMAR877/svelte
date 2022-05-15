@@ -2,6 +2,12 @@
   import New from "./New.svelte";
   import Button from "./Button.svelte";
   export let name = "";
+  export const data = {
+    name: "",
+    age: "",
+    sex: "",
+  };
+  
   const click = () => {
     alert("name hello");
   };
@@ -13,8 +19,8 @@
     Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
     how to build Svelte apps.
   </p>
-  <New {name} />
-  <Button on:click={click} />
+  <New {...data} />
+  <!-- <Button on:click={click} /> -->
 </main>
 
 <style>
