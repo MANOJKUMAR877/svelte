@@ -1,11 +1,11 @@
 
 <header>
-    <h1><img src="/favicon.png" alt="hsd"></h1>
+    <h1><img src="/amicocon.png" alt="hsd"></h1>
 </header>
 
 <style>
 header{
-    background:#beb8a1;
+    background:#FFE4CF;
     padding :20px;
 }
 h1{
@@ -13,6 +13,6 @@ h1{
     text-align: center;
 }
 img{
-    max-width: 50px;
+    max-width: 150px;
 }
 </style>

@@ -21,7 +21,10 @@
 
 <style>
   .tabs {
-    margin-bottom: 40px;
+    margin:10px 20px;
+    border: 1px solid black;
+    border-radius: 16px;
+    background-color: #c1b8b1;
   }
   ul {
     display: flex;

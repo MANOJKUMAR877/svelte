@@ -7,7 +7,7 @@
 
 <style>
   .card {
-    background: #fff;
+    background: #fae8d9;
     padding: 20px;
 
     border-radius: 6px;

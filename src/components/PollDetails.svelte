@@ -26,7 +26,7 @@
   p {
     margin-top: 6px;
     font-size: 14px;
-    color: #aaa;
+    color: rgb(35, 32, 32);
     margin-bottom: 30px;
   }
   .answer {
@@ -34,6 +34,7 @@
     cursor: pointer;
     margin: 10px auto;
     position: relative;
+    border-radius: 16px;
   }
   .answer:hover {
     opacity: 0.6;

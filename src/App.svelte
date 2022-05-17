@@ -26,6 +26,8 @@
     activeItem= 'Current Polls'
   };
 </script>
+<div class="all">
+
 
 <Header />
 <main>
@@ -37,3 +39,10 @@
   {/if}
 </main>
 <Footer />
+</div>
+
+<style>
+  .all{
+    background: #e3dedb;
+  }
+</style>
