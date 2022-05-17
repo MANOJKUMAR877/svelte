@@ -17,7 +17,7 @@
   {#if activeItem === "Current Polls"}
     <p>Hei poll</p>
   {:else if activeItem === "Add New Poll"}
-    <CreatePollForm/>
+    <CreatePollForm />
   {/if}
 </main>
 <Footer />
