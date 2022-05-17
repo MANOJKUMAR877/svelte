@@ -1,37 +1,37 @@
 <script>
-  import Button from "./../shared/Button.svelte";
+  import { createEventDispatcher } from "svelte";
 
+  import Button from "./../shared/Button.svelte";
+  let dispatch = createEventDispatcher();
   let fields = { question: "", answerA: "", answerB: "" };
   let errors = { question: "", answerA: "", answerB: "" };
   let valid = false;
   const onSubmit = () => {
-    valid = true
+    valid = true;
 
-    if(fields.question.trim().length < 5)
-    {
-      valid:false;
-      errors.question = 'Question must be at least 5 characters long'
+    if (fields.question.trim().length < 5) {
+      valid: false;
+      errors.question = "Question must be at least 5 characters long";
+    } else {
+      errors.question = "";
     }
-    else{
-      errors.question="";
+    if (fields.answerA.trim().length < 1) {
+      valid: false;
+      errors.answerA = "Answer A must be at least 1 character long";
+    } else {
+      errors.answerA = "";
     }
-    if(fields.answerA.trim().length < 1)
-    {
-      valid:false;
-      errors.answerA = 'Answer A must be at least 1 characters long'
-    }
-    else{
-      errors.answerA="";
-    }
-    if(fields.answerB.trim().length < 1)
-    {
-      valid:false;
-      errors.answerB = 'Answer B must be at least 1 characters long'
-    }
-    else{
-      errors.answerB="";
+    if (fields.answerB.trim().length < 1) {
+      valid: false;
+      errors.answerB = "Answer B must be at least 1 character long";
+    } else {
+      errors.answerB = "";
     }
 
+    if (valid) {
+      let poll = { ...fields, votesA: 0, votesB: 0, id: Math.random() };
+      dispatch("add", poll);
+    }
   };
 </script>
 
@@ -71,9 +71,9 @@
     margin: 10px auto;
     text-align: left;
   }
-  .error{
-   color: #d91b42;
-   font-weight: bold;
-   font-size: 12px;
+  .error {
+    color: #d91b42;
+    font-weight: bold;
+    font-size: 12px;
   }
 </style>
