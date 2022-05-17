@@ -6,7 +6,7 @@
 
 
 
-# svelte poll application with add poll and poll results
+# svelte poll application with add poll and poll results by Manojkumar
 
 This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
 
