@@ -1,12 +1,13 @@
 <script>
-  import { createEventDispatcher } from "svelte";
+
   import PollDetails from "./PollDetails.svelte";
   export let polls = [];
+
 </script>
 
 <div class="poll-list">
   {#each polls as poll (poll.id)}
-    <div><PollDetails {poll}/></div>
+    <div><PollDetails {poll}  on:vote/></div>
   {/each}
 </div>
 
