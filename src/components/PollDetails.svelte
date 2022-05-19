@@ -4,6 +4,8 @@
   export let poll;
   const dispatch = createEventDispatcher();
   $: totalVotes = poll.votesA + poll.votesB;
+  $: precentA = Math.floor(100/totalVotes * poll.votesA)
+  $: precentB = Math.floor(100/totalVotes * poll.votesB)
   const handleVote = (option, id) => {
     dispatch("vote", { option, id });
   };
@@ -14,14 +16,13 @@
     <h3>{poll.question}</h3>
     <p>Total Votes = {totalVotes}</p>
     <div class="answer" on:click={handleVote("a", poll.id)}>
-      <div class="precent precent-a" />
+      <div class="precent precent-a" style="width: {precentA}%"/>
       <span>{poll.answerA} ({poll.votesA})</span>
     </div>
   </div>
-  <div class="answer">
-    <div class="precent precent-b" on:click={handleVote("b", poll.id)}>
-      <span>{poll.answerB} ({poll.votesB})</span>
-    </div>
+  <div class="answer" on:click={handleVote("b", poll.id)}>
+    <div class="precent precent-b"  style="width: {precentB}%"/>
+    <span>{poll.answerB} ({poll.votesB})</span>
   </div>
 </Card>
 
@@ -49,5 +50,20 @@
   span {
     display: inline-block;
     padding: 10px 20px;
+  }
+  .precent {
+    height: 100%;
+    position: absolute;
+    box-sizing: border-box;
+  }
+  .precent-a {
+    border-radius: 16px;
+    border-left: 2px solid #c33552;
+    background: rgba(217, 27, 66, 0.2);
+  }
+  .precent-b {
+    border-radius: 16px;
+    border-left: 2px solid #31924e;
+    background: rgba(20, 104, 33, 0.2);
   }
 </style>
