@@ -1,5 +1,5 @@
 <footer>
-  <div class="copyright">Copyright 2022 for Baskaran</div>
+  <div class="copyright">Copyright </div>
 </footer>
 
 <style>
