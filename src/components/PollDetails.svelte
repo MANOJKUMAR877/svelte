@@ -1,4 +1,5 @@
 <script>
+  import Button from "./../shared/Button.svelte";
   import Card from "./../shared/Card.svelte";
   import PollStore from "../stores/PollStore";
   import { createEventDispatcher } from "svelte";
@@ -7,9 +8,7 @@
   $: totalVotes = poll.votesA + poll.votesB;
   $: precentA = Math.floor((100 / totalVotes) * poll.votesA);
   $: precentB = Math.floor((100 / totalVotes) * poll.votesB);
-  const handleVote = (option, id ) => {
-   // const { option, id } = e.detail;
-    console.log(id,option);
+  const handleVote = (option, id) => {
     PollStore.update((currentPolls) => {
       let copiedPolls = [...currentPolls];
       let upVotedPoll = copiedPolls.find((poll) => poll.id === id);
@@ -20,6 +19,12 @@
         upVotedPoll.votesB++;
       }
       return copiedPolls;
+    });
+  };
+
+  const deletePoll = (id) => {
+    PollStore.update((currentPolls) => {
+      return currentPolls.filter((poll) => poll.id != id);
     });
   };
 </script>
@@ -36,6 +41,14 @@
   <div class="answer" on:click={handleVote("b", poll.id)}>
     <div class="precent precent-b" style="width: {precentB}%" />
     <span>{poll.answerB} ({poll.votesB})</span>
+  </div>
+  <div class="delete">
+    <Button
+      flat={true}
+      on:click={() => {
+        deletePoll(poll.id);
+      }}>Delete</Button
+    >
   </div>
 </Card>
 
@@ -78,5 +91,8 @@
     border-radius: 16px;
     border-left: 2px solid #31924e;
     background: rgba(20, 104, 33, 0.2);
+  }
+  .delete {
+    margin-top: 30px;
   }
 </style>
