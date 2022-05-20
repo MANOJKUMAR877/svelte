@@ -1,13 +1,26 @@
 <script>
   import Card from "./../shared/Card.svelte";
+  import PollStore from "../stores/PollStore";
   import { createEventDispatcher } from "svelte";
   export let poll;
-  const dispatch = createEventDispatcher();
+
   $: totalVotes = poll.votesA + poll.votesB;
-  $: precentA = Math.floor(100/totalVotes * poll.votesA)
-  $: precentB = Math.floor(100/totalVotes * poll.votesB)
-  const handleVote = (option, id) => {
-    dispatch("vote", { option, id });
+  $: precentA = Math.floor((100 / totalVotes) * poll.votesA);
+  $: precentB = Math.floor((100 / totalVotes) * poll.votesB);
+  const handleVote = (option, id ) => {
+   // const { option, id } = e.detail;
+    console.log(id,option);
+    PollStore.update((currentPolls) => {
+      let copiedPolls = [...currentPolls];
+      let upVotedPoll = copiedPolls.find((poll) => poll.id === id);
+      if (option === "a") {
+        upVotedPoll.votesA++;
+      }
+      if (option === "b") {
+        upVotedPoll.votesB++;
+      }
+      return copiedPolls;
+    });
   };
 </script>
 
@@ -16,12 +29,12 @@
     <h3>{poll.question}</h3>
     <p>Total Votes = {totalVotes}</p>
     <div class="answer" on:click={handleVote("a", poll.id)}>
-      <div class="precent precent-a" style="width: {precentA}%"/>
+      <div class="precent precent-a" style="width: {precentA}%" />
       <span>{poll.answerA} ({poll.votesA})</span>
     </div>
   </div>
   <div class="answer" on:click={handleVote("b", poll.id)}>
-    <div class="precent precent-b"  style="width: {precentB}%"/>
+    <div class="precent precent-b" style="width: {precentB}%" />
     <span>{poll.answerB} ({poll.votesB})</span>
   </div>
 </Card>
